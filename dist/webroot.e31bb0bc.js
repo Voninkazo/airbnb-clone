@@ -28448,11 +28448,53 @@ function Satys(_ref) {
     className: "list_conatiner"
   }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
 }
-},{"react":"../node_modules/react/index.js"}],"icons/close.svg":[function(require,module,exports) {
-module.exports = "/close.1a8adba6.svg";
-},{}],"icons/search.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"icons/search.svg":[function(require,module,exports) {
 module.exports = "/search.bab3328d.svg";
-},{}],"components/Airbnb.js":[function(require,module,exports) {
+},{}],"icons/close.svg":[function(require,module,exports) {
+module.exports = "/close.1a8adba6.svg";
+},{}],"components/ModalForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ModalForm;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _close = _interopRequireDefault(require("../icons/close.svg"));
+
+var _search = _interopRequireDefault(require("../icons/search.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ModalForm(props) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "popup"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "popup-content"
+  }, /*#__PURE__*/_react.default.createElement("form", {
+    className: "modal-form"
+  }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "guests",
+    placeholder: "Add guests"
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    className: "search",
+    value: "Search"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _search.default,
+    alt: ""
+  })), /*#__PURE__*/_react.default.createElement("p", {
+    className: "close-icon",
+    onClick: props.handleClick
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _close.default,
+    alt: ""
+  })))));
+}
+},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28466,9 +28508,9 @@ var _stays = _interopRequireDefault(require("./stays.json"));
 
 var _Stays = _interopRequireDefault(require("./Stays"));
 
-var _close = _interopRequireDefault(require("../icons/close.svg"));
-
 var _search = _interopRequireDefault(require("../icons/search.svg"));
+
+var _ModalForm = _interopRequireDefault(require("./ModalForm"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28496,43 +28538,13 @@ function Airbnb() {
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
 
-  function openPopup() {
-    setIsOpen(true);
+  function handleClick() {
+    setIsOpen(!isOpen);
   }
 
-  function handleClose() {
-    setIsOpen(false);
-    console.log('closed');
-  }
-
-  return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement("div", {
-    className: "popup"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "popup-content"
-  }, /*#__PURE__*/_react.default.createElement("form", {
-    className: "modal-form"
-  }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "city",
-    placeholder: "Location"
-  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "guests",
-    placeholder: "Add guests"
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    className: "search",
-    value: "Search"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _search.default,
-    alt: ""
-  })), /*#__PURE__*/_react.default.createElement("p", {
-    className: "close-icon",
-    onClick: handleClose
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _close.default,
-    alt: ""
-  }))))), /*#__PURE__*/_react.default.createElement("form", {
+  return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
+    handleClick: handleClick
+  }), /*#__PURE__*/_react.default.createElement("form", {
     className: "form"
   }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
@@ -28543,7 +28555,7 @@ function Airbnb() {
     name: "guests",
     placeholder: "Add guests"
   })), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: openPopup,
+    onClick: handleClick,
     type: "button",
     className: "search"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -28557,7 +28569,7 @@ function Airbnb() {
     });
   })));
 }
-},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/search.svg":"icons/search.svg","./ModalForm":"components/ModalForm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28644,7 +28656,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58772" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64420" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
