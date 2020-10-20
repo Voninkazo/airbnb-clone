@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Satys({stay}) {
     return (
-        <div key={stay.id}>
+        <div>
             <img src={stay.photo} alt={stay.title}/>
             <ul className="list_conatiner">
                 <li>{stay.type}</li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import stays from './stays.json';
 import Stays from './Stays';
+import Form from './Form';
 
 export default function Airbnb() {
     const allStays = stays;
@@ -8,14 +9,17 @@ export default function Airbnb() {
     console.log(id);
 
     return(
-            <div  className="stays">
+            <div>
+                <Form />
+                <div  className="stays">
                 {
                     allStays.map(stay => {
                         return (
-                            <Stays key={id} stay={stay}/>
+                            <Stays stay={stay}/>
                         )
                     })
                 }
+                </div>
             </div>
     )
 }
