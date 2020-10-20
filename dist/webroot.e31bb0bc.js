@@ -28518,6 +28518,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28532,11 +28534,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Airbnb() {
   var allStays = _stays.default;
+  console.log(allStays);
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
+
+  for (var i = 0; i < allStays.length; i++) {
+    allStays[i].id = i;
+  }
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -28564,9 +28571,10 @@ function Airbnb() {
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
   }, allStays.map(function (stay) {
-    return /*#__PURE__*/_react.default.createElement(_Stays.default, {
+    return /*#__PURE__*/_react.default.createElement(_Stays.default, _extends({
+      key: stay.id,
       stay: stay
-    });
+    }, allStays));
   })));
 }
 },{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/search.svg":"icons/search.svg","./ModalForm":"components/ModalForm.js"}],"index.js":[function(require,module,exports) {
@@ -28656,7 +28664,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64420" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

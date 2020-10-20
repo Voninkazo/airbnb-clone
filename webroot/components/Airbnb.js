@@ -6,8 +6,12 @@ import ModalForm from './ModalForm';
 
 export default function Airbnb() {
     const allStays = stays;
+    console.log(allStays);
     const [isOpen, setIsOpen] = useState(false);
 
+    for(let i = 0;i < allStays.length; i++) {
+       allStays[i].id = i;
+    }
 
     function handleClick() {
         setIsOpen(!isOpen);
@@ -33,7 +37,7 @@ export default function Airbnb() {
                 {
                     allStays.map(stay => {
                         return (
-                            <Stays stay={stay}/>
+                            <Stays key={stay.id} stay={stay} {...allStays}/>
                         )
                     })
                 }

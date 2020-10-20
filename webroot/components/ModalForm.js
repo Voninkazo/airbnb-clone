@@ -7,9 +7,9 @@ export default function ModalForm(props) {
         <div className="popup">
                 <div className="popup-content">
                     <form className="modal-form">
-                        {/* <select name="select-city">    
+                        {/* <select name="select-city">
                             {
-                            allStays.map((option) => (
+                            props.allStays.map((option) => (
                             <option value={
                             `${option.city} , ${option.country}`}>{`${option.city}, ${option.country}`}
                             </option>
