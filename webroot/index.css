@@ -5,14 +5,11 @@ body {
 }
 
 .stays {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    column-gap: 32px;
-    row-gap: 42px;
+    display: flex;
+    flex-direction: column;
 }
 
-img {
+div>img {
     max-width: 100%;
     height: 300px;
 }
@@ -44,4 +41,52 @@ button.search {
 button img {
     width: 17px;
     height: 17px;
+}
+
+.close-icon {
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    top: calc(100vh - 85vh - 109px);
+    background: #ededed;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+}
+
+.popup {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 139vh;
+    top: -75px;
+    left: 0;
+}
+
+.popup-content {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 200px;
+    max-height: 70vh;
+    margin-top: calc(100vh - 85vh - 20px);
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid #999;
+    overflow: auto;
+}
+
+@media(min-width:768px) {
+    .stays {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 32px;
+        row-gap: 42px;
+    }
 }

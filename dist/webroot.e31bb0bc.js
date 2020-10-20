@@ -28448,25 +28448,69 @@ function Satys(_ref) {
     className: "list_conatiner"
   }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
 }
-},{"react":"../node_modules/react/index.js"}],"icons/search.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"icons/close.svg":[function(require,module,exports) {
+module.exports = "/close.1a8adba6.svg";
+},{}],"icons/search.svg":[function(require,module,exports) {
 module.exports = "/search.bab3328d.svg";
-},{}],"components/Form.js":[function(require,module,exports) {
+},{}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Form;
+exports.default = Airbnb;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _stays = _interopRequireDefault(require("./stays.json"));
+
+var _Stays = _interopRequireDefault(require("./Stays"));
+
+var _close = _interopRequireDefault(require("../icons/close.svg"));
 
 var _search = _interopRequireDefault(require("../icons/search.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Form() {
-  return /*#__PURE__*/_react.default.createElement("form", {
-    className: "form"
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Airbnb() {
+  var allStays = _stays.default;
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isOpen = _useState2[0],
+      setIsOpen = _useState2[1];
+
+  function openPopup() {
+    setIsOpen(true);
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+    console.log('closed');
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement("div", {
+    className: "popup"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "popup-content"
+  }, /*#__PURE__*/_react.default.createElement("form", {
+    className: "modal-form"
   }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "city",
@@ -28477,37 +28521,35 @@ function Form() {
     placeholder: "Add guests"
   })), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    className: "search",
+    value: "Search"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _search.default,
+    alt: ""
+  })), /*#__PURE__*/_react.default.createElement("p", {
+    className: "close-icon",
+    onClick: handleClose
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _close.default,
+    alt: ""
+  }))))), /*#__PURE__*/_react.default.createElement("form", {
+    className: "form"
+  }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "city",
+    placeholder: "Location"
+  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "guests",
+    placeholder: "Add guests"
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: openPopup,
+    type: "button",
     className: "search"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default,
     alt: ""
-  })));
-}
-},{"react":"../node_modules/react/index.js","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Airbnb;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _stays = _interopRequireDefault(require("./stays.json"));
-
-var _Stays = _interopRequireDefault(require("./Stays"));
-
-var _Form = _interopRequireDefault(require("./Form"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Airbnb() {
-  var allStays = _stays.default;
-  var id = allStays.forEach(function (index) {
-    return Date.now() + index;
-  });
-  console.log(id);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Form.default, null), /*#__PURE__*/_react.default.createElement("div", {
+  }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
   }, allStays.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
@@ -28515,7 +28557,7 @@ function Airbnb() {
     });
   })));
 }
-},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","./Form":"components/Form.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
