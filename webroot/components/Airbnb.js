@@ -6,7 +6,6 @@ import ModalForm from './ModalForm';
 
 export default function Airbnb() {
     const allStays = stays;
-    console.log(allStays);
     const [isOpen, setIsOpen] = useState(false);
 
     for(let i = 0;i < allStays.length; i++) {
@@ -20,31 +19,50 @@ export default function Airbnb() {
     const [filteredState, setFilteredState] = useState(allStays);
     function handleChange (e) {
         setFilteredState(allStays.filter(
-        stays => stays.city.toLowerCase() === e.target.value.toLowerCase())
-        )
-        setIsOpen(true);
-        console.log(filteredState);
+        stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
+        ))
+        // setIsOpen(!isOpen);
+        // console.log(filteredState);
+        console.log(filteredState)
     }
+
+    const [filterByGuests, setFilterByGuest] = useState(allStays);
+    
+
+    function handleFilterGuest(e) {
+        console.log(e.target.value);
+        setFilterByGuest(filteredState.filter(
+            guest => guest.maxGuests >= e.target.value
+        ))
+    }
+
+    const [count, setCount] = useState(0);
+  function handleIncrement() {
+    setCount(prevCount => prevCount + 1);
+    console.log(count);
+  }
+
 
     return(
             <div>
                 {isOpen &&
-                <ModalForm handleClick={handleClick} handleChange={handleChange} allStay={allStays}/>
+                <ModalForm 
+                handleIncrement={handleIncrement}
+                handleClick={handleClick} 
+                handleChange={handleChange}
+                handleFilterGuest={handleFilterGuest}
+                allStay={allStays}/>
                 }
-                <form className="form">
-                    <label>
-                        <input type="text" name="city" placeholder="Location" />
-                    </label>
-                    <label>
-                    <input type="text" name="guests" placeholder="Add guests" />
-                    </label>
+                <div className="buttons-container">
+                   <button type="button" onClick={handleClick}>Location</button>
+                   <button type="button" onClick={handleClick}>Add guests</button>
                     <button onClick={handleClick} type="button" className="search">
                         <img src={IconSearch} alt="" />
                     </button>
-                </form>
+                </div>
                 <div  className="stays">
                 {
-                    filteredState.map(stay => {
+                    filterByGuests.map(stay => {
                         return (
                             <Stays key={stay.id} stay={stay}/>
                         )

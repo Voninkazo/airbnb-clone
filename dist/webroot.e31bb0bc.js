@@ -28446,7 +28446,7 @@ function Satys(_ref) {
     alt: stay.title
   }), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list_conatiner"
-  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
+  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating), /*#__PURE__*/_react.default.createElement("li", null, stay.maxGuests)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
 }
 },{"react":"../node_modules/react/index.js"}],"icons/search.svg":[function(require,module,exports) {
 module.exports = "/search.bab3328d.svg";
@@ -28460,7 +28460,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ModalForm;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _close = _interopRequireDefault(require("../icons/close.svg"));
 
@@ -28468,9 +28468,11 @@ var _search = _interopRequireDefault(require("../icons/search.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function ModalForm(props) {
-  // console.log(props.handleChange);
-  // console.log(props)
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "popup"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -28485,13 +28487,19 @@ function ModalForm(props) {
       key: option.title,
       value: "".concat(option.city)
     }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+  })), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "guests",
+    value: props.count,
+    onChange: props.handleFilterGuest,
     placeholder: "Add guests"
-  })), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.handleIncrement
+  }, "Increment"), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "search",
+    onClick: props.handleChange,
     value: "Search"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default,
@@ -28542,7 +28550,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Airbnb() {
   var allStays = _stays.default;
-  console.log(allStays);
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -28565,26 +28572,51 @@ function Airbnb() {
   function handleChange(e) {
     setFilteredState(allStays.filter(function (stays) {
       return stays.city.toLowerCase() === e.target.value.toLowerCase();
-    }));
-    setIsOpen(true);
+    })); // setIsOpen(!isOpen);
+    // console.log(filteredState);
+
     console.log(filteredState);
   }
 
+  var _useState5 = (0, _react.useState)(allStays),
+      _useState6 = _slicedToArray(_useState5, 2),
+      filterByGuests = _useState6[0],
+      setFilterByGuest = _useState6[1];
+
+  function handleFilterGuest(e) {
+    console.log(e.target.value);
+    setFilterByGuest(filteredState.filter(function (guest) {
+      return guest.maxGuests >= e.target.value;
+    }));
+  }
+
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      count = _useState8[0],
+      setCount = _useState8[1];
+
+  function handleIncrement() {
+    setCount(function (prevCount) {
+      return prevCount + 1;
+    });
+    console.log(count);
+  }
+
   return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
+    handleIncrement: handleIncrement,
     handleClick: handleClick,
     handleChange: handleChange,
+    handleFilterGuest: handleFilterGuest,
     allStay: allStays
-  }), /*#__PURE__*/_react.default.createElement("form", {
-    className: "form"
-  }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "city",
-    placeholder: "Location"
-  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "guests",
-    placeholder: "Add guests"
-  })), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "buttons-container"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: handleClick
+  }, "Location"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: handleClick
+  }, "Add guests"), /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleClick,
     type: "button",
     className: "search"
@@ -28593,7 +28625,7 @@ function Airbnb() {
     alt: ""
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
-  }, filteredState.map(function (stay) {
+  }, filterByGuests.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
       stay: stay

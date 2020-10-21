@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconClose from '../icons/close.svg';
 import IconSearch from '../icons/search.svg';
 
 export default function ModalForm(props) {
-    // console.log(props.handleChange);
-    // console.log(props)
+
     return(
         <div className="popup">
                 <div className="popup-content">
@@ -18,10 +17,11 @@ export default function ModalForm(props) {
                             ))
                             }
                         </select>
-                        <label>
-                        <input type="text" name="guests" placeholder="Add guests" />
-                        </label>
-                        <button type="button" className="search" value="Search">
+                        <input type="text" name="guests"
+                        value={props.count}
+                        onChange={props.handleFilterGuest} placeholder="Add guests" />
+                        <button type="button" onClick={props.handleIncrement}>Increment</button>
+                        <button type="button" className="search" onClick={props.handleChange} value="Search">
                             <img src={IconSearch} alt="" />
                         </button>
                         <p className="close-icon" onClick={props.handleClick}>

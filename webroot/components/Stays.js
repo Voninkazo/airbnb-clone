@@ -8,6 +8,7 @@ export default function Satys({stay}) {
                 <li>{stay.type}</li>
                 <li>{stay.beds} beds</li>
                 <li>{stay.rating}</li>
+                <li>{stay.maxGuests}</li>
             </ul>
             <p>{stay.title}</p>
         </div>
