@@ -17,10 +17,19 @@ export default function Airbnb() {
         setIsOpen(!isOpen);
     }
 
+    const [filteredState, setFilteredState] = useState(allStays);
+    function handleChange (e) {
+        setFilteredState(allStays.filter(
+        stays => stays.city.toLowerCase() === e.target.value.toLowerCase())
+        )
+        setIsOpen(true);
+        console.log(filteredState);
+    }
+
     return(
             <div>
                 {isOpen &&
-                <ModalForm handleClick={handleClick}/>
+                <ModalForm handleClick={handleClick} handleChange={handleChange} allStay={allStays}/>
                 }
                 <form className="form">
                     <label>
@@ -35,9 +44,9 @@ export default function Airbnb() {
                 </form>
                 <div  className="stays">
                 {
-                    allStays.map(stay => {
+                    filteredState.map(stay => {
                         return (
-                            <Stays key={stay.id} stay={stay} {...allStays}/>
+                            <Stays key={stay.id} stay={stay}/>
                         )
                     })
                 }

@@ -3,19 +3,21 @@ import IconClose from '../icons/close.svg';
 import IconSearch from '../icons/search.svg';
 
 export default function ModalForm(props) {
+    // console.log(props.handleChange);
+    // console.log(props)
     return(
         <div className="popup">
                 <div className="popup-content">
                     <form className="modal-form">
-                        {/* <select name="select-city">
+                        <select name="select-city" onChange={props.handleChange}>
                             {
-                            props.allStays.map((option) => (
-                            <option value={
-                            `${option.city} , ${option.country}`}>{`${option.city}, ${option.country}`}
+                            props.allStay.map((option) => (
+                            <option key={option.title} value={
+                            `${option.city}`}>{`${option.city}, ${option.country}`}
                             </option>
                             ))
                             }
-                        </select> */}
+                        </select>
                         <label>
                         <input type="text" name="guests" placeholder="Add guests" />
                         </label>

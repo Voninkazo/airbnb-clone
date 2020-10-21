@@ -28469,13 +28469,23 @@ var _search = _interopRequireDefault(require("../icons/search.svg"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ModalForm(props) {
+  // console.log(props.handleChange);
+  // console.log(props)
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "popup"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "popup-content"
   }, /*#__PURE__*/_react.default.createElement("form", {
     className: "modal-form"
-  }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+  }, /*#__PURE__*/_react.default.createElement("select", {
+    name: "select-city",
+    onChange: props.handleChange
+  }, props.allStay.map(function (option) {
+    return /*#__PURE__*/_react.default.createElement("option", {
+      key: option.title,
+      value: "".concat(option.city)
+    }, "".concat(option.city, ", ").concat(option.country));
+  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "guests",
     placeholder: "Add guests"
@@ -28518,8 +28528,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28549,8 +28557,23 @@ function Airbnb() {
     setIsOpen(!isOpen);
   }
 
+  var _useState3 = (0, _react.useState)(allStays),
+      _useState4 = _slicedToArray(_useState3, 2),
+      filteredState = _useState4[0],
+      setFilteredState = _useState4[1];
+
+  function handleChange(e) {
+    setFilteredState(allStays.filter(function (stays) {
+      return stays.city.toLowerCase() === e.target.value.toLowerCase();
+    }));
+    setIsOpen(true);
+    console.log(filteredState);
+  }
+
   return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
-    handleClick: handleClick
+    handleClick: handleClick,
+    handleChange: handleChange,
+    allStay: allStays
   }), /*#__PURE__*/_react.default.createElement("form", {
     className: "form"
   }, /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
@@ -28570,11 +28593,11 @@ function Airbnb() {
     alt: ""
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
-  }, allStays.map(function (stay) {
-    return /*#__PURE__*/_react.default.createElement(_Stays.default, _extends({
+  }, filteredState.map(function (stay) {
+    return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
       stay: stay
-    }, allStays));
+    });
   })));
 }
 },{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/search.svg":"icons/search.svg","./ModalForm":"components/ModalForm.js"}],"index.js":[function(require,module,exports) {
@@ -28664,7 +28687,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55136" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57842" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
