@@ -58,7 +58,7 @@ export default function Airbnb() {
     }
 
     return(
-            <div>
+            <div className="big-container">
                 {isOpen &&
                 <ModalForm 
                 incrementAdult={incrementAdult}

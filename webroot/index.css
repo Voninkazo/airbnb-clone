@@ -4,6 +4,11 @@ body {
     font-family: 10px;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+}
+
 .stays {
     display: flex;
     flex-direction: column;
@@ -16,13 +21,12 @@ div>img {
 }
 
 .buttons-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 2rem;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .buttons-container button {
@@ -31,8 +35,17 @@ div>img {
     line-height: 18px;
     /* identical to box height */
     color: #BDBDBD;
-    border-left: 1px solid;
-    border-right: 1px solid;
+    border: none;
+    background: none;
+}
+
+button.city {
+    color: #000000;
+    border-right: 1px solid #F2F2F2;
+}
+
+button.guest {
+    border-right: 1px solid #F2F2F2;
 }
 
 button.search {
@@ -96,11 +109,44 @@ button img {
     color: #333333;
 }
 
+div.big-container {
+    padding-inline-start: 13px;
+    padding-block-start: 19px;
+    padding-inline-end: 13px;
+    padding-block-end: 19px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list_conatiner {
+    display: flex;
+    flex-direction: row;
+}
+
+.list_conatiner li {
+    margin-inline-start: 47px;
+}
+
+.stay-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #000000;
+}
+
 svg {
     fill: #EB5757;
 }
 
 @media(min-width:768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
     .stays {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

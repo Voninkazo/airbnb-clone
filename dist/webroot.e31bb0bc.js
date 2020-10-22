@@ -28446,7 +28446,9 @@ function Satys(_ref) {
     alt: stay.title
   }), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list_conatiner"
-  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating), /*#__PURE__*/_react.default.createElement("li", null, stay.maxGuests)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
+  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating)), /*#__PURE__*/_react.default.createElement("p", {
+    className: "stay-title"
+  }, stay.title));
 }
 },{"react":"../node_modules/react/index.js"}],"icons/close.svg":[function(require,module,exports) {
 module.exports = "/close.1a8adba6.svg";
@@ -28557,22 +28559,26 @@ var _search = _interopRequireDefault(require("../icons/search.svg"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ButtonsComponent(props) {
-  return /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("a", {
+    href: "./"
+  }, " Windbnb")), /*#__PURE__*/_react.default.createElement("ul", {
     className: "buttons-container"
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    className: "city",
     onClick: props.handleClick
-  }, "Location"), /*#__PURE__*/_react.default.createElement("button", {
+  }, "Helenski, Finland")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    className: "guest",
     onClick: props.handleClick
-  }, "Add guests"), /*#__PURE__*/_react.default.createElement("button", {
+  }, "Add guests")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: props.handleClick,
     type: "button",
     className: "search"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default,
     alt: ""
-  })));
+  })))));
 }
 },{"react":"../node_modules/react/index.js","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
@@ -28688,7 +28694,9 @@ function Airbnb() {
     console.log(filteredState);
   }
 
-  return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "big-container"
+  }, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
     incrementAdult: incrementAdult,
     decrementAdult: decrementAdult,
     incrementChildren: incrementChildren,
