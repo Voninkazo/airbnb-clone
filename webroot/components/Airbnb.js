@@ -26,31 +26,47 @@ export default function Airbnb() {
         console.log(filteredState)
     }
 
-    const [filterByGuests, setFilterByGuest] = useState(allStays);
-    
+    const [countAdult, setAdultCount] = useState(0);
+    function incrementAdult() {
+      setAdultCount(prevCount => prevCount + 1);
+    }
 
+    function decrementAdult() {
+        setAdultCount(prevCount => prevCount - 1);
+    }
+
+    const [countChildren, setChildrenCount] = useState(0);
+    function incrementChildren() {
+      setChildrenCount(prevCount => prevCount + 1);
+    }
+
+    function decrementChildren() {
+        setChildrenCount(prevCount => prevCount - 1);
+    }
+
+    let allGuests = countAdult + countChildren;
+
+    const [filterByGuests, setFilterByGuest] = useState(allStays);
     function handleFilterGuest(e) {
         console.log(e.target.value);
         setFilterByGuest(filteredState.filter(
-            guest => guest.maxGuests >= e.target.value
+            guest => guest.maxGuests >= allGuests
         ))
     }
-
-    const [count, setCount] = useState(0);
-  function handleIncrement() {
-    setCount(prevCount => prevCount + 1);
-    console.log(count);
-  }
-
 
     return(
             <div>
                 {isOpen &&
                 <ModalForm 
-                handleIncrement={handleIncrement}
+                incrementAdult={incrementAdult}
+                decrementAdult={decrementAdult}
+                incrementChildren={incrementChildren}
+                decrementChildren={decrementChildren}
                 handleClick={handleClick} 
                 handleChange={handleChange}
                 handleFilterGuest={handleFilterGuest}
+                countAdult={countAdult}
+                countChildren={countChildren}
                 allStay={allStays}/>
                 }
                 <div className="buttons-container">

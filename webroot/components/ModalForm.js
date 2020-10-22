@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import IconClose from '../icons/close.svg';
 import IconSearch from '../icons/search.svg';
 
 export default function ModalForm(props) {
-
     return(
         <div className="popup">
                 <div className="popup-content">
@@ -17,10 +16,16 @@ export default function ModalForm(props) {
                             ))
                             }
                         </select>
-                        <input type="text" name="guests"
-                        value={props.count}
-                        onChange={props.handleFilterGuest} placeholder="Add guests" />
-                        <button type="button" onClick={props.handleIncrement}>Increment</button>
+                        <div className="increment-container">
+                            <small>Adults: {props.countAdult}</small>
+                            <button type="button" onClick={props.incrementAdult}>+</button>
+                            <button type="button" onClick={props.decrementAdult}>-</button>
+                        <br/>
+                            <small>Child: {props.countChildren}</small>
+                            <button type="button" onClick={props.incrementChildren}>+</button>
+                            <button type="button" onClick={props.decrementChildren}>-</button>
+                        </div>
+
                         <button type="button" className="search" onClick={props.handleChange} value="Search">
                             <img src={IconSearch} alt="" />
                         </button>

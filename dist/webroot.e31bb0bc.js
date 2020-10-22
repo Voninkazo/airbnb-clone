@@ -28460,17 +28460,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ModalForm;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _close = _interopRequireDefault(require("../icons/close.svg"));
 
 var _search = _interopRequireDefault(require("../icons/search.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ModalForm(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -28487,16 +28483,21 @@ function ModalForm(props) {
       key: option.title,
       value: "".concat(option.city)
     }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    name: "guests",
-    value: props.count,
-    onChange: props.handleFilterGuest,
-    placeholder: "Add guests"
-  }), /*#__PURE__*/_react.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "increment-container"
+  }, /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    onClick: props.handleIncrement
-  }, "Increment"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: props.incrementAdult
+  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.decrementAdult
+  }, "-"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.incrementChildren
+  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.decrementChildren
+  }, "-")), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "search",
     onClick: props.handleChange,
@@ -28578,35 +28579,64 @@ function Airbnb() {
     console.log(filteredState);
   }
 
-  var _useState5 = (0, _react.useState)(allStays),
+  var _useState5 = (0, _react.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      filterByGuests = _useState6[0],
-      setFilterByGuest = _useState6[1];
+      countAdult = _useState6[0],
+      setAdultCount = _useState6[1];
 
-  function handleFilterGuest(e) {
-    console.log(e.target.value);
-    setFilterByGuest(filteredState.filter(function (guest) {
-      return guest.maxGuests >= e.target.value;
-    }));
+  function incrementAdult() {
+    setAdultCount(function (prevCount) {
+      return prevCount + 1;
+    });
+  }
+
+  function decrementAdult() {
+    setAdultCount(function (prevCount) {
+      return prevCount - 1;
+    });
   }
 
   var _useState7 = (0, _react.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      count = _useState8[0],
-      setCount = _useState8[1];
+      countChildren = _useState8[0],
+      setChildrenCount = _useState8[1];
 
-  function handleIncrement() {
-    setCount(function (prevCount) {
+  function incrementChildren() {
+    setChildrenCount(function (prevCount) {
       return prevCount + 1;
     });
-    console.log(count);
+  }
+
+  function decrementChildren() {
+    setChildrenCount(function (prevCount) {
+      return prevCount - 1;
+    });
+  }
+
+  var allGuests = countAdult + countChildren;
+
+  var _useState9 = (0, _react.useState)(allStays),
+      _useState10 = _slicedToArray(_useState9, 2),
+      filterByGuests = _useState10[0],
+      setFilterByGuest = _useState10[1];
+
+  function handleFilterGuest(e) {
+    console.log(e.target.value);
+    setFilterByGuest(filteredState.filter(function (guest) {
+      return guest.maxGuests >= allGuests;
+    }));
   }
 
   return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
-    handleIncrement: handleIncrement,
+    incrementAdult: incrementAdult,
+    decrementAdult: decrementAdult,
+    incrementChildren: incrementChildren,
+    decrementChildren: decrementChildren,
     handleClick: handleClick,
     handleChange: handleChange,
     handleFilterGuest: handleFilterGuest,
+    countAdult: countAdult,
+    countChildren: countChildren,
     allStay: allStays
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "buttons-container"
@@ -28719,7 +28749,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53993" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

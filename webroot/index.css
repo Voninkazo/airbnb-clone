@@ -82,6 +82,10 @@ button img {
     overflow: auto;
 }
 
+.increment-container {
+    margin: 1rem;
+}
+
 @media(min-width:768px) {
     .stays {
         display: grid;
