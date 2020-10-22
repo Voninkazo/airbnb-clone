@@ -16,17 +16,8 @@ export default function Airbnb() {
         setIsOpen(!isOpen);
     }
 
-    const [filteredState, setFilteredState] = useState(allStays);
-    function handleChange (e) {
-        setFilteredState(allStays.filter(
-        stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
-        ))
-        // setIsOpen(!isOpen);
-        // console.log(filteredState);
-        console.log(filteredState)
-    }
-
     const [countAdult, setAdultCount] = useState(0);
+    
     function incrementAdult() {
       setAdultCount(prevCount => prevCount + 1);
     }
@@ -34,6 +25,7 @@ export default function Airbnb() {
     function decrementAdult() {
         setAdultCount(prevCount => prevCount - 1);
     }
+
 
     const [countChildren, setChildrenCount] = useState(0);
     function incrementChildren() {
@@ -44,14 +36,25 @@ export default function Airbnb() {
         setChildrenCount(prevCount => prevCount - 1);
     }
 
-    let allGuests = countAdult + countChildren;
+
+    let allGuests = (countAdult + countChildren);
 
     const [filterByGuests, setFilterByGuest] = useState(allStays);
     function handleFilterGuest(e) {
         console.log(e.target.value);
-        setFilterByGuest(filteredState.filter(
+        setFilterByGuest(allStays.filter(
             guest => guest.maxGuests >= allGuests
         ))
+    }
+
+    const [filteredState, setFilteredState] = useState(allStays);
+    function handleChange (e) {
+        setFilteredState(filterByGuests.filter(
+        stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
+        ))
+        // setIsOpen(!isOpen);
+        // console.log(filteredState);
+        console.log(filteredState)
     }
 
     return(
@@ -67,6 +70,7 @@ export default function Airbnb() {
                 handleFilterGuest={handleFilterGuest}
                 countAdult={countAdult}
                 countChildren={countChildren}
+                allGuests={allGuests}
                 allStay={allStays}/>
                 }
                 <div className="buttons-container">
@@ -78,7 +82,7 @@ export default function Airbnb() {
                 </div>
                 <div  className="stays">
                 {
-                    filterByGuests.map(stay => {
+                    filteredState.map(stay => {
                         return (
                             <Stays key={stay.id} stay={stay}/>
                         )

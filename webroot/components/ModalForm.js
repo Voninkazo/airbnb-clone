@@ -1,38 +1,32 @@
 import React from 'react';
 import IconClose from '../icons/close.svg';
 import IconSearch from '../icons/search.svg';
+import Filters from './Filters';
 
 export default function ModalForm(props) {
     return(
         <div className="popup">
                 <div className="popup-content">
-                    <form className="modal-form">
-                        <select name="select-city" onChange={props.handleChange}>
-                            {
-                            props.allStay.map((option) => (
-                            <option key={option.title} value={
-                            `${option.city}`}>{`${option.city}, ${option.country}`}
-                            </option>
-                            ))
-                            }
-                        </select>
-                        <div className="increment-container">
-                            <small>Adults: {props.countAdult}</small>
-                            <button type="button" onClick={props.incrementAdult}>+</button>
-                            <button type="button" onClick={props.decrementAdult}>-</button>
-                        <br/>
-                            <small>Child: {props.countChildren}</small>
-                            <button type="button" onClick={props.incrementChildren}>+</button>
-                            <button type="button" onClick={props.decrementChildren}>-</button>
-                        </div>
+                        <Filters 
+                        incrementAdult={props.incrementAdult}
+                        decrementAdult={props.decrementAdult}
+                        incrementChildren={props.incrementChildren}
+                        decrementChildren={props.decrementChildren}
+                        countAdult={props.countAdult}
+                        countChildren={props.countChildren}
+                        allStay={props.allStay}
+                        allGuests={props.allGuests}
+                        handleFilterGuest={props.handleFilterGuest}
+                        handleChange={props.handleChange}
+                        />
 
-                        <button type="button" className="search" onClick={props.handleChange} value="Search">
+                        <button type="button" className="search" value="Search">
                             <img src={IconSearch} alt="" />
+                            Search
                         </button>
                         <p className="close-icon" onClick={props.handleClick}>
                             <img src={IconClose} alt=""/>
                         </p>
-                    </form>
                 </div>
             </div>
     )

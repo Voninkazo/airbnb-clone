@@ -28452,7 +28452,49 @@ function Satys(_ref) {
 module.exports = "/search.bab3328d.svg";
 },{}],"icons/close.svg":[function(require,module,exports) {
 module.exports = "/close.1a8adba6.svg";
-},{}],"components/ModalForm.js":[function(require,module,exports) {
+},{}],"components/Filters.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Filters;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Filters(props) {
+  return /*#__PURE__*/_react.default.createElement("form", {
+    className: "modal-form"
+  }, /*#__PURE__*/_react.default.createElement("select", {
+    name: "select-city",
+    onChange: props.handleChange
+  }, props.allStay.map(function (option) {
+    return /*#__PURE__*/_react.default.createElement("option", {
+      key: option.title,
+      value: "".concat(option.city)
+    }, "".concat(option.city, ", ").concat(option.country));
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "increment-container"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.handleFilterGuest
+  }, props.allGuests), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.incrementAdult
+  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.decrementAdult
+  }, "-"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.incrementChildren
+  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.decrementChildren
+  }, "-")));
+}
+},{"react":"../node_modules/react/index.js"}],"components/ModalForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28466,6 +28508,8 @@ var _close = _interopRequireDefault(require("../icons/close.svg"));
 
 var _search = _interopRequireDefault(require("../icons/search.svg"));
 
+var _Filters = _interopRequireDefault(require("./Filters"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ModalForm(props) {
@@ -28473,47 +28517,33 @@ function ModalForm(props) {
     className: "popup"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "popup-content"
-  }, /*#__PURE__*/_react.default.createElement("form", {
-    className: "modal-form"
-  }, /*#__PURE__*/_react.default.createElement("select", {
-    name: "select-city",
-    onChange: props.handleChange
-  }, props.allStay.map(function (option) {
-    return /*#__PURE__*/_react.default.createElement("option", {
-      key: option.title,
-      value: "".concat(option.city)
-    }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "increment-container"
-  }, /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: props.incrementAdult
-  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: props.decrementAdult
-  }, "-"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: props.incrementChildren
-  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: props.decrementChildren
-  }, "-")), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement(_Filters.default, {
+    incrementAdult: props.incrementAdult,
+    decrementAdult: props.decrementAdult,
+    incrementChildren: props.incrementChildren,
+    decrementChildren: props.decrementChildren,
+    countAdult: props.countAdult,
+    countChildren: props.countChildren,
+    allStay: props.allStay,
+    allGuests: props.allGuests,
+    handleFilterGuest: props.handleFilterGuest,
+    handleChange: props.handleChange
+  }), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "search",
-    onClick: props.handleChange,
     value: "Search"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default,
     alt: ""
-  })), /*#__PURE__*/_react.default.createElement("p", {
+  }), "Search"), /*#__PURE__*/_react.default.createElement("p", {
     className: "close-icon",
     onClick: props.handleClick
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _close.default,
     alt: ""
-  })))));
+  }))));
 }
-},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg","./Filters":"components/Filters.js"}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28565,24 +28595,10 @@ function Airbnb() {
     setIsOpen(!isOpen);
   }
 
-  var _useState3 = (0, _react.useState)(allStays),
+  var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      filteredState = _useState4[0],
-      setFilteredState = _useState4[1];
-
-  function handleChange(e) {
-    setFilteredState(allStays.filter(function (stays) {
-      return stays.city.toLowerCase() === e.target.value.toLowerCase();
-    })); // setIsOpen(!isOpen);
-    // console.log(filteredState);
-
-    console.log(filteredState);
-  }
-
-  var _useState5 = (0, _react.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      countAdult = _useState6[0],
-      setAdultCount = _useState6[1];
+      countAdult = _useState4[0],
+      setAdultCount = _useState4[1];
 
   function incrementAdult() {
     setAdultCount(function (prevCount) {
@@ -28596,10 +28612,10 @@ function Airbnb() {
     });
   }
 
-  var _useState7 = (0, _react.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      countChildren = _useState8[0],
-      setChildrenCount = _useState8[1];
+  var _useState5 = (0, _react.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      countChildren = _useState6[0],
+      setChildrenCount = _useState6[1];
 
   function incrementChildren() {
     setChildrenCount(function (prevCount) {
@@ -28615,16 +28631,30 @@ function Airbnb() {
 
   var allGuests = countAdult + countChildren;
 
-  var _useState9 = (0, _react.useState)(allStays),
-      _useState10 = _slicedToArray(_useState9, 2),
-      filterByGuests = _useState10[0],
-      setFilterByGuest = _useState10[1];
+  var _useState7 = (0, _react.useState)(allStays),
+      _useState8 = _slicedToArray(_useState7, 2),
+      filterByGuests = _useState8[0],
+      setFilterByGuest = _useState8[1];
 
   function handleFilterGuest(e) {
     console.log(e.target.value);
-    setFilterByGuest(filteredState.filter(function (guest) {
+    setFilterByGuest(allStays.filter(function (guest) {
       return guest.maxGuests >= allGuests;
     }));
+  }
+
+  var _useState9 = (0, _react.useState)(allStays),
+      _useState10 = _slicedToArray(_useState9, 2),
+      filteredState = _useState10[0],
+      setFilteredState = _useState10[1];
+
+  function handleChange(e) {
+    setFilteredState(filterByGuests.filter(function (stays) {
+      return stays.city.toLowerCase() === e.target.value.toLowerCase();
+    })); // setIsOpen(!isOpen);
+    // console.log(filteredState);
+
+    console.log(filteredState);
   }
 
   return /*#__PURE__*/_react.default.createElement("div", null, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
@@ -28637,6 +28667,7 @@ function Airbnb() {
     handleFilterGuest: handleFilterGuest,
     countAdult: countAdult,
     countChildren: countChildren,
+    allGuests: allGuests,
     allStay: allStays
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "buttons-container"
@@ -28655,7 +28686,7 @@ function Airbnb() {
     alt: ""
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
-  }, filterByGuests.map(function (stay) {
+  }, filteredState.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
       stay: stay
