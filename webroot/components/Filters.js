@@ -12,17 +12,13 @@ export default function Filters(props) {
                 ))
                 }
             </select>
-            <div className="increment-container">
-                <button type="button" onClick={props.handleFilterGuest}>{props.allGuests}</button>
-            <br/>
+                <button className="input-button" type="button" onClick={props.handleFilterGuest}>{props.allGuests} Guests</button>
                 <small>Adults: {props.countAdult}</small>
                 <button type="button" onClick={props.incrementAdult}>+</button>
                 <button type="button" onClick={props.decrementAdult}>-</button>
-            <br/>
                 <small>Child: {props.countChildren}</small>
                 <button type="button" onClick={props.incrementChildren}>+</button>
                 <button type="button" onClick={props.decrementChildren}>-</button>
-            </div>
         </form>
     )
 }

@@ -28448,10 +28448,10 @@ function Satys(_ref) {
     className: "list_conatiner"
   }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating), /*#__PURE__*/_react.default.createElement("li", null, stay.maxGuests)), /*#__PURE__*/_react.default.createElement("p", null, stay.title));
 }
-},{"react":"../node_modules/react/index.js"}],"icons/search.svg":[function(require,module,exports) {
-module.exports = "/search.bab3328d.svg";
-},{}],"icons/close.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"icons/close.svg":[function(require,module,exports) {
 module.exports = "/close.1a8adba6.svg";
+},{}],"icons/search.svg":[function(require,module,exports) {
+module.exports = "/search.bab3328d.svg";
 },{}],"components/Filters.js":[function(require,module,exports) {
 "use strict";
 
@@ -28475,24 +28475,23 @@ function Filters(props) {
       key: option.title,
       value: "".concat(option.city)
     }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "increment-container"
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    className: "input-button",
     type: "button",
     onClick: props.handleFilterGuest
-  }, props.allGuests), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
+  }, props.allGuests, " Guests"), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.incrementAdult
   }, "+"), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.decrementAdult
-  }, "-"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
+  }, "-"), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.incrementChildren
   }, "+"), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.decrementChildren
-  }, "-")));
+  }, "-"));
 }
 },{"react":"../node_modules/react/index.js"}],"components/ModalForm.js":[function(require,module,exports) {
 "use strict";
@@ -28530,8 +28529,8 @@ function ModalForm(props) {
     handleChange: props.handleChange
   }), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    className: "search",
-    value: "Search"
+    value: "Search",
+    className: "search"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default,
     alt: ""
@@ -28543,7 +28542,39 @@ function ModalForm(props) {
     alt: ""
   }))));
 }
-},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg","./Filters":"components/Filters.js"}],"components/Airbnb.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg","./Filters":"components/Filters.js"}],"components/ButtonsComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ButtonsComponent;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _search = _interopRequireDefault(require("../icons/search.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ButtonsComponent(props) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "buttons-container"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.handleClick
+  }, "Location"), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: props.handleClick
+  }, "Add guests"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: props.handleClick,
+    type: "button",
+    className: "search"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _search.default,
+    alt: ""
+  })));
+}
+},{"react":"../node_modules/react/index.js","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28557,9 +28588,9 @@ var _stays = _interopRequireDefault(require("./stays.json"));
 
 var _Stays = _interopRequireDefault(require("./Stays"));
 
-var _search = _interopRequireDefault(require("../icons/search.svg"));
-
 var _ModalForm = _interopRequireDefault(require("./ModalForm"));
+
+var _ButtonsComponent = _interopRequireDefault(require("./ButtonsComponent"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28669,22 +28700,9 @@ function Airbnb() {
     countChildren: countChildren,
     allGuests: allGuests,
     allStay: allStays
+  }), /*#__PURE__*/_react.default.createElement(_ButtonsComponent.default, {
+    handleClick: handleClick
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "buttons-container"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: handleClick
-  }, "Location"), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: handleClick
-  }, "Add guests"), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleClick,
-    type: "button",
-    className: "search"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _search.default,
-    alt: ""
-  }))), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
   }, filteredState.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
@@ -28693,7 +28711,7 @@ function Airbnb() {
     });
   })));
 }
-},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","../icons/search.svg":"icons/search.svg","./ModalForm":"components/ModalForm.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./stays.json":"components/stays.json","./Stays":"components/Stays.js","./ModalForm":"components/ModalForm.js","./ButtonsComponent":"components/ButtonsComponent.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

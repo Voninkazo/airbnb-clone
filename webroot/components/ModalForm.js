@@ -20,7 +20,7 @@ export default function ModalForm(props) {
                         handleChange={props.handleChange}
                         />
 
-                        <button type="button" className="search" value="Search">
+                        <button type="button" value="Search" className="search">
                             <img src={IconSearch} alt="" />
                             Search
                         </button>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import stays from './stays.json';
 import Stays from './Stays';
-import IconSearch from '../icons/search.svg';
 import ModalForm from './ModalForm';
+import ButtonsComponent from './ButtonsComponent';
 
 export default function Airbnb() {
     const allStays = stays;
@@ -71,15 +71,14 @@ export default function Airbnb() {
                 countAdult={countAdult}
                 countChildren={countChildren}
                 allGuests={allGuests}
-                allStay={allStays}/>
+                allStay={allStays}
+                />
                 }
-                <div className="buttons-container">
-                   <button type="button" onClick={handleClick}>Location</button>
-                   <button type="button" onClick={handleClick}>Add guests</button>
-                    <button onClick={handleClick} type="button" className="search">
-                        <img src={IconSearch} alt="" />
-                    </button>
-                </div>
+                
+                <ButtonsComponent 
+                handleClick={handleClick}
+                />
+
                 <div  className="stays">
                 {
                     filteredState.map(stay => {
