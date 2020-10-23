@@ -15,8 +15,6 @@ export default function ModalForm(props) {
                         countAdult={props.countAdult}
                         countChildren={props.countChildren}
                         allStay={props.allStay}
-                        allGuests={props.allGuests}
-                        handleFilterGuest={props.handleFilterGuest}
                         handleChange={props.handleChange}
                         />
 

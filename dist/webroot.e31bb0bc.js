@@ -28477,11 +28477,7 @@ function Filters(props) {
       key: option.title,
       value: "".concat(option.city)
     }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    className: "input-button",
-    type: "button",
-    onClick: props.handleFilterGuest
-  }, props.allGuests, " Guests"), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.incrementAdult
   }, "+"), /*#__PURE__*/_react.default.createElement("button", {
@@ -28526,8 +28522,6 @@ function ModalForm(props) {
     countAdult: props.countAdult,
     countChildren: props.countChildren,
     allStay: props.allStay,
-    allGuests: props.allGuests,
-    handleFilterGuest: props.handleFilterGuest,
     handleChange: props.handleChange
   }), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -28624,6 +28618,11 @@ function Airbnb() {
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(allStays),
+      _useState4 = _slicedToArray(_useState3, 2),
+      townStays = _useState4[0],
+      setTownStays = _useState4[1];
+
   for (var i = 0; i < allStays.length; i++) {
     allStays[i].id = i;
   }
@@ -28632,10 +28631,10 @@ function Airbnb() {
     setIsOpen(!isOpen);
   }
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      countAdult = _useState4[0],
-      setAdultCount = _useState4[1];
+  var _useState5 = (0, _react.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      countAdult = _useState6[0],
+      setAdultCount = _useState6[1];
 
   function incrementAdult() {
     setAdultCount(function (prevCount) {
@@ -28649,10 +28648,10 @@ function Airbnb() {
     });
   }
 
-  var _useState5 = (0, _react.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      countChildren = _useState6[0],
-      setChildrenCount = _useState6[1];
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      countChildren = _useState8[0],
+      setChildrenCount = _useState8[1];
 
   function incrementChildren() {
     setChildrenCount(function (prevCount) {
@@ -28668,32 +28667,16 @@ function Airbnb() {
 
   var allGuests = countAdult + countChildren;
 
-  var _useState7 = (0, _react.useState)(allStays),
-      _useState8 = _slicedToArray(_useState7, 2),
-      filterByGuests = _useState8[0],
-      setFilterByGuest = _useState8[1];
-
-  function handleFilterGuest(e) {
-    console.log(e.target.value);
-    setFilterByGuest(allStays.filter(function (guest) {
-      return guest.maxGuests >= allGuests;
-    }));
-  }
-
-  var _useState9 = (0, _react.useState)(allStays),
-      _useState10 = _slicedToArray(_useState9, 2),
-      filteredState = _useState10[0],
-      setFilteredState = _useState10[1];
-
   function handleChange(e) {
-    setFilteredState(filterByGuests.filter(function (stays) {
+    setTownStays(allStays.filter(function (stays) {
       return stays.city.toLowerCase() === e.target.value.toLowerCase();
     })); // setIsOpen(!isOpen);
     // console.log(filteredState);
-
-    console.log(filteredState);
   }
 
+  var filteredByGuests = townStays.filter(function (guest) {
+    return guest.maxGuests >= allGuests;
+  });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "big-container"
   }, isOpen && /*#__PURE__*/_react.default.createElement(_ModalForm.default, {
@@ -28703,7 +28686,6 @@ function Airbnb() {
     decrementChildren: decrementChildren,
     handleClick: handleClick,
     handleChange: handleChange,
-    handleFilterGuest: handleFilterGuest,
     countAdult: countAdult,
     countChildren: countChildren,
     allGuests: allGuests,
@@ -28712,7 +28694,7 @@ function Airbnb() {
     handleClick: handleClick
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
-  }, filteredState.map(function (stay) {
+  }, filteredByGuests.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
       stay: stay
@@ -28768,9 +28750,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/_react.default.createElement("h1", {
-        className: "title"
-      }, "Stays in Finland"), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Airbnb.default, null)));
+      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Airbnb.default, null)));
     }
   }]);
 
@@ -28806,7 +28786,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53993" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52218" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -7,6 +7,7 @@ import ButtonsComponent from './ButtonsComponent';
 export default function Airbnb() {
     const allStays = stays;
     const [isOpen, setIsOpen] = useState(false);
+    const [townStays, setTownStays] = useState(allStays);
 
     for(let i = 0;i < allStays.length; i++) {
        allStays[i].id = i;
@@ -37,25 +38,19 @@ export default function Airbnb() {
     }
 
 
-    let allGuests = (countAdult + countChildren);
+    let allGuests = countAdult + countChildren;
 
-    const [filterByGuests, setFilterByGuest] = useState(allStays);
-    function handleFilterGuest(e) {
-        console.log(e.target.value);
-        setFilterByGuest(allStays.filter(
-            guest => guest.maxGuests >= allGuests
-        ))
-    }
-
-    const [filteredState, setFilteredState] = useState(allStays);
     function handleChange (e) {
-        setFilteredState(filterByGuests.filter(
-        stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
-        ))
-        // setIsOpen(!isOpen);
-        // console.log(filteredState);
-        console.log(filteredState)
-    }
+        setTownStays(allStays.filter(
+         stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
+         ))
+         // setIsOpen(!isOpen);
+         // console.log(filteredState);
+     }
+
+        const filteredByGuests= townStays.filter(
+            guest => guest.maxGuests >= allGuests
+        )
 
     return(
             <div className="big-container">
@@ -67,21 +62,20 @@ export default function Airbnb() {
                 decrementChildren={decrementChildren}
                 handleClick={handleClick} 
                 handleChange={handleChange}
-                handleFilterGuest={handleFilterGuest}
                 countAdult={countAdult}
                 countChildren={countChildren}
                 allGuests={allGuests}
                 allStay={allStays}
                 />
                 }
-                
+
                 <ButtonsComponent 
                 handleClick={handleClick}
                 />
 
-                <div  className="stays">
+                <div className="stays">
                 {
-                    filteredState.map(stay => {
+                    filteredByGuests.map(stay => {
                         return (
                             <Stays key={stay.id} stay={stay}/>
                         )

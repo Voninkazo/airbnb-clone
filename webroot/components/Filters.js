@@ -12,7 +12,6 @@ export default function Filters(props) {
                 ))
                 }
             </select>
-                <button className="input-button" type="button" onClick={props.handleFilterGuest}>{props.allGuests} Guests</button>
                 <small>Adults: {props.countAdult}</small>
                 <button type="button" onClick={props.incrementAdult}>+</button>
                 <button type="button" onClick={props.decrementAdult}>-</button>
