@@ -1,10 +1,11 @@
 import React from 'react';
 import IconSearch from '../icons/search.svg';
+import Logo from '../icons/logo.svg';
 
 export default function ButtonsComponent(props) {
     return (
             <header>
-                <h1><a href="./"> Windbnb</a></h1>
+                <h1><a href="./"><img src={Logo} alt="" /></a></h1>
                 <ul className="buttons-container">
                     <li>
                         <button type="button" className="city" onClick={props.handleClick}>Helenski, Finland</button>

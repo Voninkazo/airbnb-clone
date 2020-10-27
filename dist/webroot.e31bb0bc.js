@@ -28427,6 +28427,8 @@ module.exports = [{
   "beds": 3,
   "photo": "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80"
 }];
+},{}],"icons/star.svg":[function(require,module,exports) {
+module.exports = "/star.af67616c.svg";
 },{}],"components/Stays.js":[function(require,module,exports) {
 "use strict";
 
@@ -28437,6 +28439,8 @@ exports.default = Satys;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _star = _interopRequireDefault(require("../icons/star.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Satys(_ref) {
@@ -28446,14 +28450,16 @@ function Satys(_ref) {
     alt: stay.title
   }), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list_conatiner"
-  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", null, stay.rating)), /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
+    className: "rating"
+  }, /*#__PURE__*/_react.default.createElement("span", null, stay.rating))), /*#__PURE__*/_react.default.createElement("p", {
     className: "stay-title"
   }, stay.title));
 }
-},{"react":"../node_modules/react/index.js"}],"icons/close.svg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/star.svg":"icons/star.svg"}],"icons/close.svg":[function(require,module,exports) {
 module.exports = "/close.1a8adba6.svg";
-},{}],"icons/search.svg":[function(require,module,exports) {
-module.exports = "/search.bab3328d.svg";
+},{}],"icons/location.png":[function(require,module,exports) {
+module.exports = "/location.e8a706c7.png";
 },{}],"components/Filters.js":[function(require,module,exports) {
 "use strict";
 
@@ -28462,36 +28468,125 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Filters;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _location = _interopRequireDefault(require("../icons/location.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function Filters(props) {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      openList = _useState2[0],
+      setOpenList = _useState2[1];
+
+  function handleOpenList() {
+    setOpenList(!openList);
+  }
+
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      openIncrement = _useState4[0],
+      setOpenIncrement = _useState4[1];
+
+  function handleOpenIncrement() {
+    setOpenIncrement(!openIncrement);
+  }
+
   return /*#__PURE__*/_react.default.createElement("form", {
     className: "modal-form"
-  }, /*#__PURE__*/_react.default.createElement("select", {
-    name: "select-city",
-    onChange: props.handleChange
-  }, props.allStay.map(function (option) {
-    return /*#__PURE__*/_react.default.createElement("option", {
-      key: option.title,
-      value: "".concat(option.city)
-    }, "".concat(option.city, ", ").concat(option.country));
-  })), /*#__PURE__*/_react.default.createElement("small", null, "Adults: ", props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "form-container"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "stay"
+  }, "Location"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "stay",
+    id: "stay",
+    placeholder: "Location",
+    onClick: handleOpenList
+  }), /*#__PURE__*/_react.default.createElement("div", null, openList && /*#__PURE__*/_react.default.createElement("ul", {
+    className: "location-container"
+  }, /*#__PURE__*/_react.default.createElement("li", {
+    className: "location"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _location.default,
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("span", null, "Helsinki, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    className: "location"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _location.default,
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("span", null, "Oulu, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    className: "location"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _location.default,
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("span", null, "Turku, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    className: "location"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _location.default,
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("span", null, "Vaasa, Finland"))))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "form-container"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "guest"
+  }, " Guests"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "guest",
+    id: "guests",
+    placeholder: "guests",
+    onClick: handleOpenIncrement
+  }), /*#__PURE__*/_react.default.createElement("div", null, openIncrement && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "increment-container"
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", {
+    className: "specification"
+  }, "Adults"), /*#__PURE__*/_react.default.createElement("small", {
+    className: "ages"
+  }, "Ages 13 or above:")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.incrementAdult
-  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+  }, "+"), /*#__PURE__*/_react.default.createElement("span", {
+    className: "adults-num"
+  }, props.countAdult), /*#__PURE__*/_react.default.createElement("button", {
+    className: "minus-btn",
     type: "button",
     onClick: props.decrementAdult
-  }, "-"), /*#__PURE__*/_react.default.createElement("small", null, "Child: ", props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
+  }, "-"))), /*#__PURE__*/_react.default.createElement("ul", {
+    className: "increment-container"
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Children"), /*#__PURE__*/_react.default.createElement("small", null, "Ages 2-12")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     onClick: props.incrementChildren
-  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+  }, "+"), /*#__PURE__*/_react.default.createElement("span", {
+    className: "child-num"
+  }, props.countChildren), /*#__PURE__*/_react.default.createElement("button", {
+    className: "minus-btn",
     type: "button",
     onClick: props.decrementChildren
-  }, "-"));
+  }, "-")))))), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Search",
+    className: "search",
+    onClick: props.handleClick
+  }, "Search"));
 }
-},{"react":"../node_modules/react/index.js"}],"components/ModalForm.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/location.png":"icons/location.png"}],"components/ModalForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28503,12 +28598,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _close = _interopRequireDefault(require("../icons/close.svg"));
 
-var _search = _interopRequireDefault(require("../icons/search.svg"));
-
 var _Filters = _interopRequireDefault(require("./Filters"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import IconSearch from '../icons/search.svg';
 function ModalForm(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "popup"
@@ -28522,15 +28616,9 @@ function ModalForm(props) {
     countAdult: props.countAdult,
     countChildren: props.countChildren,
     allStay: props.allStay,
-    handleChange: props.handleChange
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    value: "Search",
-    className: "search"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _search.default,
-    alt: ""
-  }), "Search"), /*#__PURE__*/_react.default.createElement("p", {
+    handleChange: props.handleChange,
+    handleClick: props.handleClick
+  }), /*#__PURE__*/_react.default.createElement("p", {
     className: "close-icon",
     onClick: props.handleClick
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -28538,7 +28626,11 @@ function ModalForm(props) {
     alt: ""
   }))));
 }
-},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","../icons/search.svg":"icons/search.svg","./Filters":"components/Filters.js"}],"components/ButtonsComponent.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","./Filters":"components/Filters.js"}],"icons/search.svg":[function(require,module,exports) {
+module.exports = "/search.bab3328d.svg";
+},{}],"icons/logo.svg":[function(require,module,exports) {
+module.exports = "/logo.fe047d72.svg";
+},{}],"components/ButtonsComponent.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28550,12 +28642,17 @@ var _react = _interopRequireDefault(require("react"));
 
 var _search = _interopRequireDefault(require("../icons/search.svg"));
 
+var _logo = _interopRequireDefault(require("../icons/logo.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ButtonsComponent(props) {
   return /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("a", {
     href: "./"
-  }, " Windbnb")), /*#__PURE__*/_react.default.createElement("ul", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _logo.default,
+    alt: ""
+  }))), /*#__PURE__*/_react.default.createElement("ul", {
     className: "buttons-container"
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
@@ -28574,7 +28671,7 @@ function ButtonsComponent(props) {
     alt: ""
   })))));
 }
-},{"react":"../node_modules/react/index.js","../icons/search.svg":"icons/search.svg"}],"components/Airbnb.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../icons/search.svg":"icons/search.svg","../icons/logo.svg":"icons/logo.svg"}],"components/Airbnb.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28786,7 +28883,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52218" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55522" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
