@@ -30,19 +30,19 @@ export default function Filters(props) {
                         <ul className="location-container">
                             <li className="location">
                                 <img src={LocationImg} alt=""/>
-                                <button type="button" value="Helsinki" onClick={props.handleChange}>Helsinki, Finland</button>
+                                <button className="btn-item" type="button" value="Helsinki" onClick={props.handleChange}>Helsinki, Finland</button>
                             </li>
                             <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <button type="button" value="Oulu"  onClick={props.handleChange}>Oulu, Finland</button>
+                                <button className="btn-item" type="button" value="Oulu"  onClick={props.handleChange}>Oulu, Finland</button>
                             </li>
                             <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <button type="button" value="Turku"  onClick={props.handleChange}>Turku, Finland</button>
+                                <button className="btn-item" type="button" value="Turku"  onClick={props.handleChange}>Turku, Finland</button>
                             </li>
                             <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <button type="button" value="Vaasa" onClick={props.handleChange}>Vaasa, Finland</button>
+                                <button className="btn-item" type="button" value="Vaasa" onClick={props.handleChange}>Vaasa, Finland</button>
                             </li>
                     </ul>
                     }

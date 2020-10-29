@@ -50,7 +50,7 @@ export default function Airbnb() {
         setTownStays(allStays.filter(
          stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
          ))
-         setInput(e.target.value);
+         setInput(e.target.value, "Finland");
          // setIsOpen(!isOpen);
          // console.log(filteredState);
      }

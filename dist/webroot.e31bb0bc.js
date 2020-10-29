@@ -28530,6 +28530,7 @@ function Filters(props) {
     src: _location.default,
     alt: ""
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-item",
     type: "button",
     value: "Helsinki",
     onClick: props.handleChange
@@ -28540,6 +28541,7 @@ function Filters(props) {
     src: _location.default,
     alt: ""
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-item",
     type: "button",
     value: "Oulu",
     onClick: props.handleChange
@@ -28550,6 +28552,7 @@ function Filters(props) {
     src: _location.default,
     alt: ""
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-item",
     type: "button",
     value: "Turku",
     onClick: props.handleChange
@@ -28560,6 +28563,7 @@ function Filters(props) {
     src: _location.default,
     alt: ""
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-item",
     type: "button",
     value: "Vaasa",
     onClick: props.handleChange
@@ -28802,7 +28806,7 @@ function Airbnb() {
     setTownStays(allStays.filter(function (stays) {
       return stays.city.toLowerCase() === e.target.value.toLowerCase();
     }));
-    setInput(e.target.value); // setIsOpen(!isOpen);
+    setInput(e.target.value, "Finland"); // setIsOpen(!isOpen);
     // console.log(filteredState);
   }
 
