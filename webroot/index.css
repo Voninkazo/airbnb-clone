@@ -109,7 +109,7 @@ button img {
     position: relative;
     width: 100%;
     margin: 0 auto;
-    height: 200px;
+    height: 400px;
     max-height: 70vh;
     margin-top: calc(100vh - 85vh - 20px);
     background: #fff;
@@ -257,24 +257,11 @@ li>button {
     border-radius: 4px;
 }
 
-
-/* .location-container,
-.increment-container {
-    display: none;
-}
-
-[name="stay"]:focus+.location-container {
-    display: block;
-}
-
-[name="guest"]:focus+.increment-container {
-    display: block;
-} */
-
 @media(min-width:768px) {
     header {
         flex-direction: row;
         justify-content: space-between;
+        padding-block-end: 84px;
     }
     .stays {
         display: grid;
@@ -290,11 +277,21 @@ li>button {
         max-width: 768px;
         margin: auto;
     }
+    .popup-content {
+        height: 460px;
+    }
     .modal-form button.search {
         height: 48px;
         margin-top: 25px;
     }
-    /* [name="stay"]:focus~.popup-content {
-        height: 460px;
-    } */
+    #root {
+        padding-top: 48px;
+    }
+}
+
+@media(min-width: 1114px) {
+    #root {
+        max-width: 1114px;
+        margin: auto;
+    }
 }

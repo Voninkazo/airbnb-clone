@@ -28518,8 +28518,9 @@ function Filters(props) {
   }, "Location"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "stay",
-    id: "stay",
     placeholder: "Location",
+    value: props.input,
+    onChange: props.handleChange,
     onClick: handleOpenList
   }), /*#__PURE__*/_react.default.createElement("div", null, openList && /*#__PURE__*/_react.default.createElement("ul", {
     className: "location-container"
@@ -28528,22 +28529,41 @@ function Filters(props) {
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _location.default,
     alt: ""
-  }), /*#__PURE__*/_react.default.createElement("span", null, "Helsinki, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Helsinki",
+    onClick: props.handleChange
+  }, "Helsinki, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    onClick: props.handleChange,
     className: "location"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _location.default,
     alt: ""
-  }), /*#__PURE__*/_react.default.createElement("span", null, "Oulu, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Oulu",
+    onClick: props.handleChange
+  }, "Oulu, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    onClick: props.handleChange,
     className: "location"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _location.default,
     alt: ""
-  }), /*#__PURE__*/_react.default.createElement("span", null, "Turku, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Turku",
+    onClick: props.handleChange
+  }, "Turku, Finland")), /*#__PURE__*/_react.default.createElement("li", {
+    onClick: props.handleChange,
     className: "location"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _location.default,
     alt: ""
-  }), /*#__PURE__*/_react.default.createElement("span", null, "Vaasa, Finland"))))), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Vaasa",
+    onClick: props.handleChange
+  }, "Vaasa, Finland"))))), /*#__PURE__*/_react.default.createElement("div", {
     className: "form-container"
   }, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "guest"
@@ -28617,7 +28637,10 @@ function ModalForm(props) {
     countChildren: props.countChildren,
     allStay: props.allStay,
     handleChange: props.handleChange,
-    handleClick: props.handleClick
+    handleClick: props.handleClick,
+    allStays: props.allStays,
+    allGuests: props.allGuests,
+    input: props.input
   }), /*#__PURE__*/_react.default.createElement("p", {
     className: "close-icon",
     onClick: props.handleClick
@@ -28720,6 +28743,11 @@ function Airbnb() {
       townStays = _useState4[0],
       setTownStays = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      input = _useState6[0],
+      setInput = _useState6[1];
+
   for (var i = 0; i < allStays.length; i++) {
     allStays[i].id = i;
   }
@@ -28728,10 +28756,10 @@ function Airbnb() {
     setIsOpen(!isOpen);
   }
 
-  var _useState5 = (0, _react.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      countAdult = _useState6[0],
-      setAdultCount = _useState6[1];
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      countAdult = _useState8[0],
+      setAdultCount = _useState8[1];
 
   function incrementAdult() {
     setAdultCount(function (prevCount) {
@@ -28740,15 +28768,17 @@ function Airbnb() {
   }
 
   function decrementAdult() {
-    setAdultCount(function (prevCount) {
-      return prevCount - 1;
-    });
+    if (countAdult > 0) {
+      setAdultCount(function (prevCount) {
+        return prevCount - 1;
+      });
+    }
   }
 
-  var _useState7 = (0, _react.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      countChildren = _useState8[0],
-      setChildrenCount = _useState8[1];
+  var _useState9 = (0, _react.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      countChildren = _useState10[0],
+      setChildrenCount = _useState10[1];
 
   function incrementChildren() {
     setChildrenCount(function (prevCount) {
@@ -28757,17 +28787,22 @@ function Airbnb() {
   }
 
   function decrementChildren() {
-    setChildrenCount(function (prevCount) {
-      return prevCount - 1;
-    });
+    if (countChildren > 0) {
+      setChildrenCount(function (prevCount) {
+        return prevCount - 1;
+      });
+    }
   }
 
   var allGuests = countAdult + countChildren;
 
   function handleChange(e) {
+    console.log(allStays);
+    console.log(e.target.value);
     setTownStays(allStays.filter(function (stays) {
       return stays.city.toLowerCase() === e.target.value.toLowerCase();
-    })); // setIsOpen(!isOpen);
+    }));
+    setInput(e.target.value); // setIsOpen(!isOpen);
     // console.log(filteredState);
   }
 
@@ -28786,7 +28821,8 @@ function Airbnb() {
     countAdult: countAdult,
     countChildren: countChildren,
     allGuests: allGuests,
-    allStay: allStays
+    allStay: allStays,
+    input: input
   }), /*#__PURE__*/_react.default.createElement(_ButtonsComponent.default, {
     handleClick: handleClick
   }), /*#__PURE__*/_react.default.createElement("div", {
@@ -28883,7 +28919,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54091" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

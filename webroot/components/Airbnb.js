@@ -8,6 +8,7 @@ export default function Airbnb() {
     const allStays = stays;
     const [isOpen, setIsOpen] = useState(false);
     const [townStays, setTownStays] = useState(allStays);
+    const [input, setInput] = useState('');
 
     for(let i = 0;i < allStays.length; i++) {
        allStays[i].id = i;
@@ -24,26 +25,32 @@ export default function Airbnb() {
     }
 
     function decrementAdult() {
-        setAdultCount(prevCount => prevCount - 1);
+        if(countAdult > 0) {
+            setAdultCount(prevCount => prevCount - 1);
+        }
     }
-
 
     const [countChildren, setChildrenCount] = useState(0);
     function incrementChildren() {
-      setChildrenCount(prevCount => prevCount + 1);
+            setChildrenCount(prevCount => prevCount + 1);
     }
 
     function decrementChildren() {
-        setChildrenCount(prevCount => prevCount - 1);
+        if (countChildren > 0) {
+            setChildrenCount(prevCount => prevCount - 1);
+        }
     }
 
 
     let allGuests = countAdult + countChildren;
 
     function handleChange (e) {
+        console.log(allStays)
+      console.log(  e.target.value);
         setTownStays(allStays.filter(
          stays => stays.city.toLowerCase() === e.target.value.toLowerCase()
          ))
+         setInput(e.target.value);
          // setIsOpen(!isOpen);
          // console.log(filteredState);
      }
@@ -66,6 +73,7 @@ export default function Airbnb() {
                 countChildren={countChildren}
                 allGuests={allGuests}
                 allStay={allStays}
+                input={input}
                 />
                 }
 

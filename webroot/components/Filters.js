@@ -17,26 +17,32 @@ export default function Filters(props) {
         <form className="modal-form">
             <div className="form-container">
                 <label htmlFor="stay">Location</label>
-                <input type="text" name="stay" id="stay" placeholder="Location" onClick={handleOpenList}/>
+                <input 
+                type="text" 
+                name="stay" 
+                placeholder="Location"
+                value={props.input}
+                onChange={props.handleChange}
+                onClick={handleOpenList}/>
                 <div>
                     {
                         openList && 
                         <ul className="location-container">
                             <li className="location">
                                 <img src={LocationImg} alt=""/>
-                                <span>Helsinki, Finland</span>
+                                <button type="button" value="Helsinki" onClick={props.handleChange}>Helsinki, Finland</button>
                             </li>
-                            <li className="location">
+                            <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <span>Oulu, Finland</span>
+                                <button type="button" value="Oulu"  onClick={props.handleChange}>Oulu, Finland</button>
                             </li>
-                            <li className="location">
+                            <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <span>Turku, Finland</span>
+                                <button type="button" value="Turku"  onClick={props.handleChange}>Turku, Finland</button>
                             </li>
-                            <li className="location">
+                            <li onClick={props.handleChange} className="location">
                                 <img src={LocationImg} alt=""/>
-                                <span>Vaasa, Finland</span>
+                                <button type="button" value="Vaasa" onClick={props.handleChange}>Vaasa, Finland</button>
                             </li>
                     </ul>
                     }

@@ -17,11 +17,14 @@ export default function ModalForm(props) {
                         allStay={props.allStay}
                         handleChange={props.handleChange}
                         handleClick={props.handleClick}
+                        allStays={props.allStays}
+                        allGuests={props.allGuests}
+                        input={props.input}
                         />
                     <p className="close-icon" onClick={props.handleClick}>
                         <img src={IconClose} alt=""/>
                     </p>
-                    </div>  
-                </div>
+                </div>  
+        </div>
     )
 }
