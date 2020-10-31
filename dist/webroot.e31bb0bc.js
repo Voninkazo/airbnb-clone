@@ -28452,7 +28452,14 @@ function Satys(_ref) {
     className: "list_conatiner"
   }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
     className: "rating"
-  }, /*#__PURE__*/_react.default.createElement("span", null, stay.rating))), /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    style: {
+      width: "15px",
+      height: "15px"
+    },
+    src: _star.default,
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("span", null, stay.rating))), /*#__PURE__*/_react.default.createElement("p", {
     className: "stay-title"
   }, stay.title));
 }
@@ -28606,7 +28613,7 @@ function Filters(props) {
   }, "-")))))), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     value: "Search",
-    className: "search",
+    className: "search filter-search",
     onClick: props.handleClick
   }, "Search"));
 }
@@ -28736,6 +28743,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Airbnb() {
   var allStays = _stays.default;
+  var existingStays = allStays.city;
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -28923,7 +28931,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54091" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54826" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

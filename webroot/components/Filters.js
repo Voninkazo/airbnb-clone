@@ -81,7 +81,7 @@ export default function Filters(props) {
                     }
                 </div>
             </div>
-            <button type="button" value="Search" className="search" onClick={props.handleClick}>
+            <button type="button" value="Search" className="search filter-search" onClick={props.handleClick}>
                     Search
             </button>
         </form>

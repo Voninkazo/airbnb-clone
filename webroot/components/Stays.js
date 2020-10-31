@@ -9,6 +9,7 @@ export default function Satys({stay}) {
                 <li>{stay.type}</li>
                 <li>{stay.beds} beds</li>
                 <li className="rating">
+                    <img style={{width:"15px", height:"15px"}} src={IconStar} alt=""/>
                     <span>{stay.rating}</span>
                 </li>
             </ul>

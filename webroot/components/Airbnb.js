@@ -6,6 +6,7 @@ import ButtonsComponent from './ButtonsComponent';
 
 export default function Airbnb() {
     const allStays = stays;
+    const existingStays = allStays.city;
     const [isOpen, setIsOpen] = useState(false);
     const [townStays, setTownStays] = useState(allStays);
     const [input, setInput] = useState('');
