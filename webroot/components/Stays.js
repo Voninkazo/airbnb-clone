@@ -5,7 +5,7 @@ export default function Satys({stay}) {
     return (
         <div>
             <img src={stay.photo} alt={stay.title}/>
-            <ul className="list_conatiner">
+            <ul className="list_container">
                 <li>{stay.type}</li>
                 <li>{stay.beds} beds</li>
                 <li className="rating">

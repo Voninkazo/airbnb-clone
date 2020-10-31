@@ -28449,7 +28449,7 @@ function Satys(_ref) {
     src: stay.photo,
     alt: stay.title
   }), /*#__PURE__*/_react.default.createElement("ul", {
-    className: "list_conatiner"
+    className: "list_container"
   }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
     className: "rating"
   }, /*#__PURE__*/_react.default.createElement("img", {

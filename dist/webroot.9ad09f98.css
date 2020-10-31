@@ -163,13 +163,14 @@ div.big-container {
     padding-block-end: 19px;
 }
 
-.list_conatiner {
+.list_container {
     display: flex;
     flex-direction: row;
 }
 
-.list_conatiner li {
+.list_container li {
     margin-inline-start: 47px;
+    white-space: nowrap;
 }
 
 .stay-title {
