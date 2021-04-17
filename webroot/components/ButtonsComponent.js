@@ -3,6 +3,7 @@ import IconSearch from '../icons/search.svg';
 import Logo from '../icons/logo.svg';
 
 export default function ButtonsComponent(props) {
+
     return (
             <header>
                 <h1><a href="./"><img src={Logo} alt="" /></a></h1>

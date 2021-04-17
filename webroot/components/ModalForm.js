@@ -1,9 +1,10 @@
 import React from 'react';
 import IconClose from '../icons/close.svg';
-// import IconSearch from '../icons/search.svg';
 import Filters from './Filters';
 
 export default function ModalForm(props) {
+
+
     return(
         <div className="popup">
                 <div className="popup-content">

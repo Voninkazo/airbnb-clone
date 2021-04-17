@@ -1,11 +1,19 @@
 import React from 'react';
 import IconStar from '../icons/star.svg';
 
-export default function Satys({stay}) {
+export default function Satys({stay, allStays, filteredByGuests}) {
+
     return (
-        <div>
-            <img src={stay.photo} alt={stay.title}/>
+        <div> 
+            <div>
+                <h2>Stays in Finland</h2>
+               { filteredByGuests.length != 0 ? <p>{ filteredByGuests.length} {filteredByGuests.length > 1 ? 'stays' : 'stay'}</p> : <p>{allStays.length} stays</p>}
+            </div>
+            <div>
+                <img style={{objectFit: 'contain'}} src={stay.photo} alt={stay.title}/>
+            </div>
             <ul className="list_container">
+                {stay.superHost ? <li>SUPERHOST</li> : ''}
                 <li>{stay.type}</li>
                 <li>{stay.beds} beds</li>
                 <li className="rating">

@@ -28444,13 +28444,18 @@ var _star = _interopRequireDefault(require("../icons/star.svg"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Satys(_ref) {
-  var stay = _ref.stay;
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  var stay = _ref.stay,
+      allStays = _ref.allStays,
+      filteredByGuests = _ref.filteredByGuests;
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Stays in Finland"), filteredByGuests.length != 0 ? /*#__PURE__*/_react.default.createElement("p", null, filteredByGuests.length, " ", filteredByGuests.length > 1 ? 'stays' : 'stay') : /*#__PURE__*/_react.default.createElement("p", null, allStays.length, " stays")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    style: {
+      objectFit: 'contain'
+    },
     src: stay.photo,
     alt: stay.title
-  }), /*#__PURE__*/_react.default.createElement("ul", {
+  })), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list_container"
-  }, /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
+  }, stay.superHost ? /*#__PURE__*/_react.default.createElement("li", null, "SUPERHOST") : '', /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
     className: "rating"
   }, /*#__PURE__*/_react.default.createElement("img", {
     style: {
@@ -28503,14 +28508,14 @@ function Filters(props) {
       openList = _useState2[0],
       setOpenList = _useState2[1];
 
-  function handleOpenList() {
-    setOpenList(!openList);
-  }
-
   var _useState3 = (0, _react.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       openIncrement = _useState4[0],
       setOpenIncrement = _useState4[1];
+
+  function handleOpenList() {
+    setOpenList(!openList);
+  }
 
   function handleOpenIncrement() {
     setOpenIncrement(!openIncrement);
@@ -28633,7 +28638,6 @@ var _Filters = _interopRequireDefault(require("./Filters"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import IconSearch from '../icons/search.svg';
 function ModalForm(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "popup"
@@ -28743,7 +28747,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Airbnb() {
   var allStays = _stays.default;
-  var existingStays = allStays.city;
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -28760,6 +28763,18 @@ function Airbnb() {
       input = _useState6[0],
       setInput = _useState6[1];
 
+  var _useState7 = (0, _react.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      countAdult = _useState8[0],
+      setAdultCount = _useState8[1];
+
+  var _useState9 = (0, _react.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      countChildren = _useState10[0],
+      setChildrenCount = _useState10[1];
+
+  var allGuests = countAdult + countChildren;
+
   for (var i = 0; i < allStays.length; i++) {
     allStays[i].id = i;
   }
@@ -28767,11 +28782,6 @@ function Airbnb() {
   function handleClick() {
     setIsOpen(!isOpen);
   }
-
-  var _useState7 = (0, _react.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      countAdult = _useState8[0],
-      setAdultCount = _useState8[1];
 
   function incrementAdult() {
     setAdultCount(function (prevCount) {
@@ -28787,11 +28797,6 @@ function Airbnb() {
     }
   }
 
-  var _useState9 = (0, _react.useState)(0),
-      _useState10 = _slicedToArray(_useState9, 2),
-      countChildren = _useState10[0],
-      setChildrenCount = _useState10[1];
-
   function incrementChildren() {
     setChildrenCount(function (prevCount) {
       return prevCount + 1;
@@ -28805,8 +28810,6 @@ function Airbnb() {
       });
     }
   }
-
-  var allGuests = countAdult + countChildren;
 
   function handleChange(e) {
     console.log(allStays);
@@ -28842,7 +28845,9 @@ function Airbnb() {
   }, filteredByGuests.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
-      stay: stay
+      stay: stay,
+      allStays: allStays,
+      filteredByGuests: filteredByGuests
     });
   })));
 }
@@ -28893,9 +28898,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("div", {
-        className: "container"
-      }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Airbnb.default, null)));
+      return /*#__PURE__*/_react.default.createElement(_Airbnb.default, null);
     }
   }]);
 
@@ -28931,7 +28934,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54826" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

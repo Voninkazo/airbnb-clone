@@ -3,12 +3,12 @@ import LocationImg from '../icons/location.png'
 
 export default function Filters(props) {
     const [openList,  setOpenList] = useState(false);
+    const [openIncrement, setOpenIncrement] = useState(false);
+
     function handleOpenList() {
         setOpenList(!openList);
     }
-
-    const [openIncrement, setOpenIncrement] = useState(false);
-
+   
     function handleOpenIncrement() {
         setOpenIncrement(!openIncrement);
     }

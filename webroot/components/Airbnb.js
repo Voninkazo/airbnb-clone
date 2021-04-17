@@ -6,10 +6,13 @@ import ButtonsComponent from './ButtonsComponent';
 
 export default function Airbnb() {
     const allStays = stays;
-    const existingStays = allStays.city;
     const [isOpen, setIsOpen] = useState(false);
     const [townStays, setTownStays] = useState(allStays);
     const [input, setInput] = useState('');
+    const [countAdult, setAdultCount] = useState(0);
+    const [countChildren, setChildrenCount] = useState(0);
+
+    let allGuests = countAdult + countChildren;
 
     for(let i = 0;i < allStays.length; i++) {
        allStays[i].id = i;
@@ -18,8 +21,6 @@ export default function Airbnb() {
     function handleClick() {
         setIsOpen(!isOpen);
     }
-
-    const [countAdult, setAdultCount] = useState(0);
     
     function incrementAdult() {
       setAdultCount(prevCount => prevCount + 1);
@@ -31,7 +32,6 @@ export default function Airbnb() {
         }
     }
 
-    const [countChildren, setChildrenCount] = useState(0);
     function incrementChildren() {
             setChildrenCount(prevCount => prevCount + 1);
     }
@@ -41,9 +41,6 @@ export default function Airbnb() {
             setChildrenCount(prevCount => prevCount - 1);
         }
     }
-
-
-    let allGuests = countAdult + countChildren;
 
     function handleChange (e) {
         console.log(allStays)
@@ -86,7 +83,7 @@ export default function Airbnb() {
                 {
                     filteredByGuests.map(stay => {
                         return (
-                            <Stays key={stay.id} stay={stay}/>
+                        <Stays key={stay.id} stay={stay} allStays={allStays} filteredByGuests={ filteredByGuests}/>
                         )
                     })
                 }

@@ -7,6 +7,12 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #ddd;
     font-family: 10px;
+    margin: 0;
+}
+
+.big-container {
+    max-width: 445px;
+    margin: auto;
 }
 
 header {
@@ -166,10 +172,11 @@ div.big-container {
 .list_container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .list_container li {
-    margin-inline-start: 47px;
+    // margin-inline-start: 47px;
     white-space: nowrap;
 }
 
@@ -266,6 +273,9 @@ li>button {
 }
 
 @media(min-width:768px) {
+    .big-container {
+        max-width: 768px;
+    }
     header {
         flex-direction: row;
         justify-content: space-between;
@@ -298,7 +308,7 @@ li>button {
 }
 
 @media(min-width: 1114px) {
-    #root {
+    .big-container {
         max-width: 1114px;
         margin: auto;
     }
