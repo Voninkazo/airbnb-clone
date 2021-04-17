@@ -80,10 +80,14 @@ export default function Airbnb() {
                 />
 
                 <div className="stays">
+                <div className="heading_container">
+                     <h2>Stays in Finland</h2>
+                    { filteredByGuests.length != 0 ? <p>{ filteredByGuests.length} {filteredByGuests.length > 1 ? 'stays' : 'stay'}</p> : <p>{allStays.length} stays</p>}
+                </div>
                 {
                     filteredByGuests.map(stay => {
                         return (
-                        <Stays key={stay.id} stay={stay} allStays={allStays} filteredByGuests={ filteredByGuests}/>
+                        <Stays key={stay.id} stay={stay} allStays={allStays}/>
                         )
                     })
                 }

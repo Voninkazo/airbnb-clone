@@ -28447,7 +28447,9 @@ function Satys(_ref) {
   var stay = _ref.stay,
       allStays = _ref.allStays,
       filteredByGuests = _ref.filteredByGuests;
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Stays in Finland"), filteredByGuests.length != 0 ? /*#__PURE__*/_react.default.createElement("p", null, filteredByGuests.length, " ", filteredByGuests.length > 1 ? 'stays' : 'stay') : /*#__PURE__*/_react.default.createElement("p", null, allStays.length, " stays")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "stay_container"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     style: {
       objectFit: 'contain'
     },
@@ -28455,7 +28457,9 @@ function Satys(_ref) {
     alt: stay.title
   })), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list_container"
-  }, stay.superHost ? /*#__PURE__*/_react.default.createElement("li", null, "SUPERHOST") : '', /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
+  }, stay.superHost ? /*#__PURE__*/_react.default.createElement("li", {
+    className: "super_host"
+  }, "SUPERHOST") : '', /*#__PURE__*/_react.default.createElement("li", null, stay.type), /*#__PURE__*/_react.default.createElement("li", null, stay.beds, " beds"), /*#__PURE__*/_react.default.createElement("li", {
     className: "rating"
   }, /*#__PURE__*/_react.default.createElement("img", {
     style: {
@@ -28643,7 +28647,18 @@ function ModalForm(props) {
     className: "popup"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "popup-content"
-  }, /*#__PURE__*/_react.default.createElement(_Filters.default, {
+  }, /*#__PURE__*/_react.default.createElement("p", {
+    className: "close-icon",
+    onClick: props.handleClick
+  }, /*#__PURE__*/_react.default.createElement("svg", {
+    width: "20",
+    height: "20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: "M17.778.808l1.414 1.414L11.414 10l7.778 7.778-1.414 1.414L10 11.414l-7.778 7.778-1.414-1.414L8.586 10 .808 2.222 2.222.808 10 8.586 17.778.808z",
+    fill: "#333333",
+    fillRule: "evenodd"
+  }))), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     incrementAdult: props.incrementAdult,
     decrementAdult: props.decrementAdult,
     incrementChildren: props.incrementChildren,
@@ -28656,13 +28671,7 @@ function ModalForm(props) {
     allStays: props.allStays,
     allGuests: props.allGuests,
     input: props.input
-  }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "close-icon",
-    onClick: props.handleClick
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _close.default,
-    alt: ""
-  }))));
+  })));
 }
 },{"react":"../node_modules/react/index.js","../icons/close.svg":"icons/close.svg","./Filters":"components/Filters.js"}],"icons/search.svg":[function(require,module,exports) {
 module.exports = "/search.bab3328d.svg";
@@ -28842,12 +28851,13 @@ function Airbnb() {
     handleClick: handleClick
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "stays"
-  }, filteredByGuests.map(function (stay) {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "heading_container"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Stays in Finland"), filteredByGuests.length != 0 ? /*#__PURE__*/_react.default.createElement("p", null, filteredByGuests.length, " ", filteredByGuests.length > 1 ? 'stays' : 'stay') : /*#__PURE__*/_react.default.createElement("p", null, allStays.length, " stays")), filteredByGuests.map(function (stay) {
     return /*#__PURE__*/_react.default.createElement(_Stays.default, {
       key: stay.id,
       stay: stay,
-      allStays: allStays,
-      filteredByGuests: filteredByGuests
+      allStays: allStays
     });
   })));
 }
