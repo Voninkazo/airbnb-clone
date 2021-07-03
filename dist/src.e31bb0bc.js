@@ -28632,7 +28632,7 @@ function Modal(_ref) {
     className: "popup-content"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "close-icon",
-    onClick: handleClick
+    onClick: toggleModal
   }, /*#__PURE__*/_react.default.createElement("svg", {
     width: "20",
     height: "20",
@@ -28923,7 +28923,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45009" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35991" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -29100,4 +29100,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/webroot.e31bb0bc.js.map
+//# sourceMappingURL=/src.e31bb0bc.js.map
